@@ -27,18 +27,30 @@ const game = {
 
 
 
-	// flashButton: function(n) {
-	// 	if (n === 1) {
-	// 		$(`.yellow`).addClass(`flash-button`).removeClass(`flash-button`);
-	// 	} else if (n === 2) {
-	// 		$(`.red`).addClass(`flash-button`).removeClass(`flash-button`);
-	// 	} else if (n === 3) {
-	// 		$(`.green`).addClass(`flash-button`).removeClass(`flash-button`);
-	// 	} else if (n === 4) {
-	// 		$(`.blue`).addClass(`flash-button`).removeClass(`flash-button`);
-	// 	}
-	// 		//n.push(this.sequence);
-	// },
+	flashButton: function(n) {
+		if (n === 1) {
+			$(`.yellow`).addClass('flash-button')
+			setTimeout(() => {
+				$(`.yellow`).removeClass('flash-button')	
+			}, 1000)
+		} else if (n === 2) {
+			$(`.red`).addClass('flash-button')
+			setTimeout(() => {
+				$(`.red`).removeClass('flash-button')	
+			}, 1000)
+		} else if (n === 3) {
+			$(`.green`).addClass('flash-button')
+			setTimeout(() => {
+				$(`.green`).removeClass('flash-button')	
+			}, 1000)
+		} else if (n === 4) {
+			$(`.blue`).addClass('flash-button')
+			setTimeout(() => {
+				$(`.blue`).removeClass('flash-button')	
+			}, 1000)
+		}
+			
+	},
 
 	// addNextColor()
 
@@ -59,21 +71,21 @@ $(`.start-game-button`).on('click', () => {
 
 $(`.yellow`).on(`click`, () => {
 	console.log(`The yellow button is working!`);
-	flashButton(1);
+	game.flashButton(1);
 })
 
 $(`.red`).on(`click`, () => {
 	console.log('The red button is working!');
-	flashButton(2);
+	game.flashButton(2);
 })
 
 $(`.green`).on(`click`, () => {
 	console.log('The green button is working!');
-	flashButton(3);	
+	game.flashButton(3);	
 })
 
 $(`.blue`).on(`click`, () => {
 	console.log(`The blue button is working!`);
-	flashButton(4);
+	game.flashButton(4);
 })
 
