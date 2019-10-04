@@ -36,3 +36,14 @@
   - Sequence Break Round: At specfic rounds (Ex: 15, 30, 45, etc) the sequence will not increment and use the same sequence from the previous round. The sequence displayed by the computer will be "broken" at certain sections, and will skip over parts of the sequence. The player must fill in the "broken" sections while following sequence in order to successfully complete the round. This type of round is designed to beat the player.
 
   - At nth number of rounds, the sequence will increase in speed. This also will affect both boss rounds and sequence break rounds.
+
+
+#Wire Frame:
+
+
+![alt text](.img/Simon-Says-Wireframe.png)
+
+
+
+
+
