@@ -38,7 +38,7 @@
   - At nth number of rounds, the sequence will increase in speed. This also will affect both boss rounds and sequence break rounds.
 
 
-#Wire Frame:
+# Wire Frame:
 
 <br>
 
