@@ -40,8 +40,10 @@
 
 #Wire Frame:
 
+<br>
 
-![alt text](.img/Simon-Says-Wireframe.png)
+
+![alt text](./img/Simon-Says-Wireframe.png)
 
 
 
