@@ -25,29 +25,27 @@ const game = {
 	},
 
 
-
-
 	flashButton: function(n) {
 		if (n === 1) {
 			$(`.yellow`).addClass('flash-button')
 			setTimeout(() => {
 				$(`.yellow`).removeClass('flash-button')	
-			}, 1000)
+			}, 75)
 		} else if (n === 2) {
 			$(`.red`).addClass('flash-button')
 			setTimeout(() => {
 				$(`.red`).removeClass('flash-button')	
-			}, 1000)
+			}, 75)
 		} else if (n === 3) {
 			$(`.green`).addClass('flash-button')
 			setTimeout(() => {
 				$(`.green`).removeClass('flash-button')	
-			}, 1000)
+			}, 75)
 		} else if (n === 4) {
 			$(`.blue`).addClass('flash-button')
 			setTimeout(() => {
 				$(`.blue`).removeClass('flash-button')	
-			}, 1000)
+			}, 75)
 		}
 			
 	},

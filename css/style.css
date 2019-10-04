@@ -22,24 +22,24 @@ button {
 }
 
 .red {
-	background-color: rgba(255,0,0,1);
+	background-color: rgba(255,0,0,0.8);
 	border-radius: 50%;
 	
 }
 
 .green {
-	background-color: rgba(0,255,0,1);
+	background-color: rgba(0,255,0,0.8);
 	border-radius: 50%;
 	}
 
 .blue {
-	background-color: rgba(0,0,255,1);
+	background-color: rgba(0,0,255,0.8);
 	border-radius: 50%;
 	
 }
 
 .yellow {
-	background-color: rgba(255,255,0,1);
+	background-color: rgba(255,255,0,0.8);
 	border-radius: 50%;
 
 }
