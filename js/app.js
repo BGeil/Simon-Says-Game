@@ -3,9 +3,9 @@ console.log(`Simon Says Game`);
 
 const game = { // Start of Game Object
 
-	player1: [],
+	player1Seq: [],
 
-	cpu: [],
+	cpuSeq: [],
 
 	currentLevel: 0,
 
@@ -19,13 +19,13 @@ const game = { // Start of Game Object
 	},
 
 	playSequence: function () {
-		this.cpu.push(this.randomNumber);
-		this.flashButton(this.cpu);
+		this.cpuSeq.push(this.randomNumber);
+		this.flashButton(this.cpuSeq);
 		this.nextLevel();
-		this.player1 = [];
+		this.player1Seq = [];
 	},
 
-
+	// Flashes the button on screen.
 	flashButton: function(n) {
 		if (n === 1) {
 			$(`.yellow`).addClass('flash-button')
@@ -64,24 +64,27 @@ const game = { // Start of Game Object
 	    } 
 	 },
 
- 	// Checks sequences beteween cpu and player1
-	compareArr: function(indexOfArray) {
-	    if (this.player1[indexOfArray] === this.cpu[indexOfArray]) {
+ 	// Checks sequences beteween cpuSeq and player1Seq
+	compareArr: function(indexOfArr) {
+	    if (this.player1Seq[indexOfArr] === this.cpuSeq[indexOfArr]) {
 
-	        if (this.cpu.length === this.player1.length) {
+	        if (this.cpuSeq.length === this.player1Seq.length) {
 	            setTimeout(function() {
 	                game.playSequence();
 	            }, 1000);
 	        }
 	    } else {
-	        alert('Game Is Over!');// game over goes here
+	        this.gameOver();
 	    }
 	},
 
 
-	// gameOver: function() {
-
-	// }
+	gameOver: function() {
+		console.log("You lost! The game is over!");
+		this.currentLevel = 0;
+		$(".current-level").text(`Current Level: ${this.currentLevel}`);
+		this.cpuSeq = [];
+	}
 
 } // End of Game Object
 
@@ -97,29 +100,29 @@ $(`.start-game-button`).on('click', () => {
 // Color Buttons ---- Cod Is definitely not DRY, but should work.
 $(`.yellow`).on(`click`, () => {
 	console.log(`The yellow button is working!`);
-	game.player1.push(1);
+	game.player1Seq.push(1);
 	game.flashButton(1);
-	game.compareArr(game.player1.length);
+	game.compareArr(game.player1Seq.length);
 })
 
 $(`.red`).on(`click`, () => {
 	console.log('The red button is working!');
-	game.player1.push(2);
+	game.player1Seq.push(2);
 	game.flashButton(2);
-	game.compareArr(game.player1.length);
+	game.compareArr(game.player1Seq.length);
 })
 
 $(`.green`).on(`click`, () => {
 	console.log('The green button is working!');
-	game.player1.push(3);
+	game.player1Seq.push(3);
 	game.flashButton(3);	
-	game.compareArr(game.player1.length)
+	game.compareArr(game.player1Seq.length)
 })
 
 $(`.blue`).on(`click`, () => {
 	console.log(`The blue button is working!`);
-	game.player1.push(4);
+	game.player1Seq.push(4);
 	game.flashButton(4);
-	game.compareArr(game.player1.length)
+	game.compareArr(game.player1Seq.length)
 })
 

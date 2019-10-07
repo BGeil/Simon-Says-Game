@@ -11,8 +11,18 @@ button:focus {
 	outline:0;
 }
 
+.circle-board {
+  height: 500px;
+  width: 500px;
+  background-color: #595959;
+  border-radius: 50%;
+  display: flex;
+  align-items:center;
+  margin: 0 auto;
+}
+
 #color-button-wrapper {
-	display: flex;
+	display: block;
 	padding: 1rem 2rem 1rem 2rem;
     margin-bottom: 50px;
     justify-content: space-between;
@@ -20,7 +30,7 @@ button:focus {
 }
 
 .start-game-button {
-	display: flex;
+	/*display: flex;*/
 	justify-content: center;
 	border-radius: 50%;
 }
@@ -54,3 +64,4 @@ button:focus {
 .flash-button {
 	opacity: 1;
 }
+
