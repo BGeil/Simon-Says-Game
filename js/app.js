@@ -7,8 +7,15 @@ const game = {
 
 	sequence: [],
 
-	ranNum: function() {
-		const randomNumber = (Math.floor(Math.random() * 4) + 1);;
+	currentStreak: null,
+
+	highStreak: null,
+
+	randomNumber: 0,
+
+	generateRanNum: function() {
+		 this.randomNumber = (Math.floor(Math.random() * 4) + 1);
+		 
 	},
 
 
@@ -36,6 +43,13 @@ const game = {
 		}
 			
 	},
+
+
+	playSequence: function () {
+
+		},
+
+
 
 	// addNextColor()
 
