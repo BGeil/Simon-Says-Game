@@ -3,13 +3,13 @@ console.log(`Simon Says Game`);
 
 const game = {
 
-	player1: [],
+	sequencePlayer: [],
 
-	sequence: [],
+	sequenceCpu: [],
 
-	currentStreak: null,
+	currentLevel: 1,
 
-	highStreak: null,
+	highestLevel: 0,
 
 	randomNumber: 0,
 
@@ -46,19 +46,25 @@ const game = {
 
 
 	playSequence: function () {
+		this.sequenceCpu.push(randomNumber);
+		
 
+		sequencePlayer=[];
 		},
-
 
 
 	// addNextColor()
 
-	// playSequence: function () {
+	nextLevel: function () {
 
-	// },
+    this.currentLevel++;
+    $(".current-level").text(`Current Level: ${this.currentLevel}`);
 
-
-
+    if (this.currentLevel >= this.highestLevel) {
+    	this.highestLevel = this.currentLevel;
+    	$(".highest-level").text(`Highest Level Achieved: ${this.highestLevel}`);
+    } 
+ }
 }
 
 
