@@ -53,7 +53,31 @@ const game = { // Start of Game Object
 
 
 
-	
+	// If player succeeds in following the sequence, this function will change the current level and if applicable the highest level on the DOM
+	nextLevel: function () {
+    this.currentLevel++;
+    $(".current-level").text(`Current Level: ${this.currentLevel}`);
+
+	    if (this.currentLevel >= this.highestLevel) {
+	    	this.highestLevel = this.currentLevel;
+	    	$(".highest-level").text(`Highest Level Achieved: ${this.highestLevel}`);
+	    } 
+	 },
+
+ 	// Checks sequences beteween cpu and player1
+	compareArr: function(indexOfArray) {
+	    if (this.player1[indexOfArray] === this.cpu[indexOfArray]) {
+
+	        if (this.cpu.length === this.player1.length) {
+	            setTimeout(function() {
+	                game.playSequence();
+	            }, 1000);
+	        }
+	    } else {
+	        alert('Game Is Over!');// game over goes here
+	    }
+	},
+
 
 	// gameOver: function() {
 
