@@ -1,19 +1,6 @@
 console.log(`Simon Says Game`);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const game = {
 
 	player1: [],
