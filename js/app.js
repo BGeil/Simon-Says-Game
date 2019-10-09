@@ -3,7 +3,7 @@ console.log(`Simon Says Game`);
 
 const game = { // Start of Game Object
 
-    player1Sequence: [],
+    player1Sequence: [2, 1, 3, 4, 1],
 
     cpuSequence: [],
 
@@ -26,19 +26,21 @@ const game = { // Start of Game Object
 
     	flash(counter);
 	    
-	    function flash(num) {
+	    function flash(index) {
 
-	       	if(num === arr.length) {
+	       	if(index === arr.length) {
 	       		console.log("return statement is running in flash function");
 	       		return;
 	       	}
 	       	else {
 
 	       		console.log("else statement is running in flash function");
-		        $(`#`+ arr).addClass('flash-button')
+
+		        $(`#`+ arr[index]).addClass('flash-button')
+
 		        setTimeout(() => {
-		            $(`#` + arr).removeClass('flash-button')
-		        	flash(num + 1);     	  
+		            $(`#` + arr[index]).removeClass('flash-button')
+		        	flash(index + 1);     	  
 		        }, 500)
 	       	}
 	    }
