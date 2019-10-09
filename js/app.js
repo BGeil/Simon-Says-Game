@@ -35,9 +35,9 @@ const game = { // Start of Game Object
 	       	else {
 
 	       		console.log("else statement is running in flash function");
-		        $(`#`+ arr.length).addClass('flash-button')
+		        $(`#`+ arr).addClass('flash-button')
 		        setTimeout(() => {
-		            $(`#` + arr.length).removeClass('flash-button')
+		            $(`#` + arr).removeClass('flash-button')
 		        	flash(num + 1);     	  
 		        }, 500)
 	       	}
@@ -62,20 +62,34 @@ const game = { // Start of Game Object
             }
         }
         this.currentLevel++;
+        player1Sequence = [];
 
         // add one to sequence
         this.randomNumber = (Math.floor(Math.random() * 4) + 1);
         this.cpuSequence.push(this.randomNumber);
+        this.playSequence(this.cpuSequence);
+
         console.log("The cpuSequence is: ");
         console.log(this.cpuSequence);
-        this.playSequence(this.cpuSequence)
+    },
+
+
+
+    // Checks to see if the lengths of both arrays are equal, if true run compareSequence
+
+    checkLength: function() {
+    	if (this.player1Sequence.length === this.cpuSequence.length) {
+    		this.compareSequence();
+    	}
     },
 
 
 
 
+
+
     // Checks sequences beteween cpu Sequence and player Sequence. If the player is successful, playSequence runs again, else the gameOver function runs.
-    compareSequence: function(Arr) {
+    compareSequence: function() {
         for (let i = 0; i < this.player1Sequence.length; i++) {
             if (this.player1Sequence[i] !== this.cpuSequence[i]) {
                 this.match = false;
@@ -83,11 +97,16 @@ const game = { // Start of Game Object
         }
         if (this.match === true) {
             this.nextLevel();
-
         } else if (this.match === false) {
             this.gameOver();
         }
     },
+
+
+
+
+
+
 
     // This functions runs when the player fails to follow the sequence
     gameOver: function() {
@@ -114,6 +133,11 @@ const game = { // Start of Game Object
 } // End of Game Object
 
 
+
+
+
+
+
 // Start Game button
 $(`.start-game-button`).on('click', () => {
     console.log(`The start button is working`);
@@ -132,21 +156,22 @@ $(`.yellow`).on(`click`, () => {
     console.log(`The player pushed 1 into the player1Sequence array`);
     console.log(game.player1Sequence);
 
-    // game.flashButton(1);
-    game.playSequence(game.player1Sequence);
-    game.compareSequence(game.player1Sequence);
+    
+    game.checkLength();
+   
 })
 
 // Red Button
 $(`.red`).on(`click`, () => {
     console.log('The red button is working!');
+    
     game.player1Sequence.push(2);
 
-    console.log(`The player pushed 2 into  the player1Sequence array`);
+    console.log(`The player pushed 2 into the player1Sequence array`);
     console.log(game.player1Sequence);
 
-    game.playSequence(game.player1Sequence);
-    game.compareSequence(game.player1Sequence);
+    game.checkLength();
+    
 })
 
 // Blue Button
@@ -159,8 +184,8 @@ $(`.blue`).on(`click`, () => {
     console.log(game.player1Sequence);
 
  
-    game.playSequence(game.player1Sequence);
-    game.compareSequence(game.player1Sequence)
+    game.checkLength();
+    
 })
 
 // Green Button
@@ -172,6 +197,6 @@ $(`.green`).on(`click`, () => {
     console.log(`The player pushed 4 into  the player1Sequence array`);
     console.log(game.player1Sequence);
 
-    game.playSequence(game.player1Sequence);
-    game.compareSequence(game.player1Sequence)
+    game.checkLength();
+    
 })
