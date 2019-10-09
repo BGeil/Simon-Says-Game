@@ -68,9 +68,9 @@ const game = { // Start of Game Object
 
 
 
-    // Checks to see if the lengths of both arrays are equal, if true run compareSequence
-
+    // Pushes number to the player's array, shows color on corresponding button, and compares arrays.
     pushButton: function(num) {
+
         // Pushes number to player array
         this.player1Sequence.push(num);
 
@@ -80,12 +80,10 @@ const game = { // Start of Game Object
         this.compareSequence();
     },
 
+    // Removes color on corresponding button
     releaseButton: function(num) {
         $(`#` + num).removeClass('flash-button')
     },
-
-
-
 
     // Checks sequences beteween cpu Sequence and player Sequence.  
     compareSequence: function() {
@@ -110,19 +108,16 @@ const game = { // Start of Game Object
         }
     },
 
-
-
-
     // This functions runs when the player fails to follow the sequence
     gameOver: function() {
-        console.log("You lost! The game is over!");
         this.resetGame();
+        this.showModal(`gameOverModal`);
     },
 
     // This functions when the player beats level 20
     playerWins: function() {
         this.resetGame();
-        console.log(`Congratulations! You Win!`);
+        this.showModal(`winModal`);
     },
 
     // Resets The Game
@@ -133,11 +128,13 @@ const game = { // Start of Game Object
         this.player1Sequence = [];
         this.match = true;
         this.isGameRunning = false;
-    }
+    },
+
+    showModal: function(modal) {
+    	$(`#` + modal).css(`display`,`block`)
+    },
 
 } // End of Game Object
-
-
 
 
 // Start Game button
@@ -156,6 +153,7 @@ $(`#1`).on(`mouseup`, () => {
     game.releaseButton(1);
 })
 
+
 // Red Button
 $(`#2`).on(`mousedown`, () => {
     game.pushButton(2)
@@ -164,6 +162,7 @@ $(`#2`).on(`mousedown`, () => {
 $(`#2`).on(`mouseup`, () => {
     game.releaseButton(2);
 })
+
 
 // Blue Button
 $(`#3`).on(`mousedown`, () => {
@@ -174,6 +173,7 @@ $(`#3`).on(`mouseup`, () => {
     game.releaseButton(3);
 })
 
+
 // Green Button
 $(`#4`).on(`mousedown`, () => {
     game.pushButton(4)
@@ -181,3 +181,12 @@ $(`#4`).on(`mousedown`, () => {
 $(`#4`).on(`mouseup`, () => {
     game.releaseButton(4);
 })
+
+
+// Closes the Modal
+$(`.closeModal`).on(`click`, () => {
+	$(`#gameOverModal`).css(`display`,`none`)
+	$(`#winModal`).css(`display`,`none`)
+})  
+
+
