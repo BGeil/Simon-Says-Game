@@ -124,9 +124,12 @@ const game = { // Start of Game Object
     resetGame: function() {
 
         // Clears all colors on buttons on reset
-        for (let i = 0; i < $(`.flash-button`).length; i++) {
-            $(`.flash-button`).removeClass(`flash-button`);
-        }
+        setTimeout(() => {
+	        for (let i = 0; i < $(`.flash-button`).length; i++) {
+	            $(`.flash-button`).removeClass(`flash-button`);
+	        }
+        }, 250)
+        
 
         // The Following Resets All Game Variables and Arrays
         this.currentLevel = 0;
