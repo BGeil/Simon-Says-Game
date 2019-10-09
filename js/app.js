@@ -7,7 +7,7 @@ const game = { // Start of Game Object
 
     cpuSequence: [],
 
-    currentLevel: 0,
+    currentLevel: 1,
 
     highestLevel: 0,
 
@@ -17,112 +17,76 @@ const game = { // Start of Game Object
 
     match: true,
 
-    // generates a random number
-    generateRanNum: function() {
-        this.randomNumber = (Math.floor(Math.random() * 4) + 1);
-
-    },
 
 
     // this runs when the start button is clicked
-    playSequence: function() {
-    	console.log(`The random number gets generate:`);
-        
+    playSequence: function(arr) {
 
-        this.generateRanNum();
-        console.log(this.randomNumber);
-       
-		console.log(`The random number is getting pushed into the cpu sequence`);
-        this.cpuSequence.push(this.randomNumber);
-        console.log(`The random number is getting pushed into the cpu sequence`);
-        console.log(this.cpuSequence);
+    	counter = 0;
 
+    	flash(counter);
+	    
+	    function flash(num) {
 
+	       	if(num === arr.length) {
+	       		console.log("return statement is running in flash function");
+	       		return;
+	       	}
+	       	else {
 
-        this.flashButton(this.cpuSequence); // Hard coded, need to refactor this.
-
-        console.log(`This is the player sequence:`);
-        console.log(this.player1Sequence);
-
-
-        this.nextLevel();
-
-
-
-    },
-
-
-
-    // Flashes the button on screen.
-    flashButton: function(arr) {
-        for (let i = 0; i < arr.length; i++) {
-        	
-        
-	        if (arr[i] === 1) {
-	            $(`.yellow`).addClass('flash-button')
-	            setTimeout(() => {
-	                $(`.yellow`).removeClass('flash-button')
-	            }, 500)
-	        } else if (arr[i] === 2) {
-	            $(`.red`).addClass('flash-button')
-	            setTimeout(() => {
-	                $(`.red`).removeClass('flash-button')
-	            }, 500)
-	        } else if (arr[i] === 3) {
-	            $(`.blue`).addClass('flash-button')
-	            setTimeout(() => {
-	                $(`.blue`).removeClass('flash-button')
-	            }, 500)
-	        } else if (arr[i] === 4) {
-	            $(`.green`).addClass('flash-button')
-	            setTimeout(() => {
-	                $(`.green`).removeClass('flash-button')
-	            }, 500)
-	        }
+	       		console.log("else statement is running in flash function");
+		        $(`#`+ arr.length).addClass('flash-button')
+		        setTimeout(() => {
+		            $(`#` + arr.length).removeClass('flash-button')
+		        	flash(num + 1);     	  
+		        }, 500)
+	       	}
 	    }
     },
 
 
 
-
-    showPrevMoves: function() {
-        // Somehow show the previous moves the cpu played so the player can follow the sequence
-    },
-
-
+    
 
 
     // If player succeeds in following the sequence, this function will change the current level and if applicable the highest level on the DOM
     nextLevel: function() {
-        
-        $(".current-level").text(`Current Level: ${this.currentLevel}`);
+
+        $(".current-level").text(`${this.currentLevel}`);
         if (this.currentLevel >= this.highestLevel) {
             if (this.highestLevel > 19) {
                 this.playerWins();
             } else {
                 this.highestLevel = this.currentLevel;
-                $(".highest-level").text(`Highest Level Achieved: ${this.highestLevel}`);
+                $(".highest-level").text(`${this.highestLevel}`);
             }
         }
         this.currentLevel++;
+
+        // add one to sequence
+        this.randomNumber = (Math.floor(Math.random() * 4) + 1);
+        this.cpuSequence.push(this.randomNumber);
+        console.log("The cpuSequence is: ");
+        console.log(this.cpuSequence);
+        this.playSequence(this.cpuSequence)
     },
 
 
 
 
     // Checks sequences beteween cpu Sequence and player Sequence. If the player is successful, playSequence runs again, else the gameOver function runs.
-     compareSequence: function(Arr) {
-        for (let i = 0; i < this.player1Sequence.length ; i++) {
-        	if (this.player1Sequence[i] !== this.cpuSequence[i]) {
-        		this.match = false;
-        	}
+    compareSequence: function(Arr) {
+        for (let i = 0; i < this.player1Sequence.length; i++) {
+            if (this.player1Sequence[i] !== this.cpuSequence[i]) {
+                this.match = false;
+            }
         }
-        if (this.match === true) { 
-			game.playSequence();
-      
+        if (this.match === true) {
+            this.nextLevel();
+
         } else if (this.match === false) {
-                this.gameOver();
-	        }
+            this.gameOver();
+        }
     },
 
     // This functions runs when the player fails to follow the sequence
@@ -133,14 +97,14 @@ const game = { // Start of Game Object
 
     // This functions when the player beats level 20
     playerWins: function() {
-    	this.resetGame();
+        this.resetGame();
         console.log(`Congratulations! You Win!`);
     },
 
     // Resets The Gasme
     resetGame: function() {
-    	this.currentLevel = 0;
-    	$(".current-level").text(`Current Level: ${this.currentLevel}`);
+        this.currentLevel = 0;
+        $(".current-level").text(`${this.currentLevel}`);
         this.cpuSequence = [];
         this.player1Sequence = [];
         this.match = true;
@@ -153,7 +117,8 @@ const game = { // Start of Game Object
 // Start Game button
 $(`.start-game-button`).on('click', () => {
     console.log(`The start button is working`);
-    game.playSequence();
+   	game.nextLevel();
+    
 })
 
 
@@ -167,7 +132,8 @@ $(`.yellow`).on(`click`, () => {
     console.log(`The player pushed 1 into the player1Sequence array`);
     console.log(game.player1Sequence);
 
-    game.flashButton(1);
+    // game.flashButton(1);
+    game.playSequence(game.player1Sequence);
     game.compareSequence(game.player1Sequence);
 })
 
@@ -179,8 +145,7 @@ $(`.red`).on(`click`, () => {
     console.log(`The player pushed 2 into  the player1Sequence array`);
     console.log(game.player1Sequence);
 
-
-    game.flashButton(2);
+    game.playSequence(game.player1Sequence);
     game.compareSequence(game.player1Sequence);
 })
 
@@ -193,7 +158,8 @@ $(`.blue`).on(`click`, () => {
     console.log(`The player pushed 3 into  the player1Sequence array`);
     console.log(game.player1Sequence);
 
-    game.flashButton(3);
+ 
+    game.playSequence(game.player1Sequence);
     game.compareSequence(game.player1Sequence)
 })
 
@@ -206,6 +172,6 @@ $(`.green`).on(`click`, () => {
     console.log(`The player pushed 4 into  the player1Sequence array`);
     console.log(game.player1Sequence);
 
-    game.flashButton(4);
+    game.playSequence(game.player1Sequence);
     game.compareSequence(game.player1Sequence)
 })

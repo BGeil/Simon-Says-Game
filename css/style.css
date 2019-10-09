@@ -82,7 +82,8 @@ button:focus {
 }
 
 .level-wrapper {
-	display: inline-flex;
+	/*display: flex;*/
+	/*float: right;*/
 	align-self: flex-end;
 	align-content: center;
 }
