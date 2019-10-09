@@ -110,29 +110,43 @@ const game = { // Start of Game Object
 
     // This functions runs when the player fails to follow the sequence
     gameOver: function() {
-        this.resetGame();
         this.showModal(`gameOverModal`);
+        this.resetGame();
     },
 
     // This functions when the player beats level 20
     playerWins: function() {
-        this.resetGame();
         this.showModal(`winModal`);
+        this.resetGame();
     },
 
     // Resets The Game
     resetGame: function() {
+
+        // Clears all colors on buttons on reset
+        for (let i = 0; i < $(`.flash-button`).length; i++) {
+            $(`.flash-button`).removeClass(`flash-button`);
+        }
+
+        // The Following Resets All Game Variables and Arrays
         this.currentLevel = 0;
         $(".current-level").text(`${this.currentLevel}`);
         this.cpuSequence = [];
         this.player1Sequence = [];
         this.match = true;
         this.isGameRunning = false;
-    },
 
-    showModal: function(modal) {
-    	$(`#` + modal).css(`display`,`block`)
     },
+    // Shows modal if player win/lose
+    showModal: function(modal) {
+        $(`#` + modal).css(`display`, `block`)
+
+    },
+    // Removes modal when player clicks on "x" to close modal
+    removeModal: function() {
+        $(`#gameOverModal`).css(`display`, `none`)
+        $(`#winModal`).css(`display`, `none`)
+    }
 
 } // End of Game Object
 
@@ -185,8 +199,5 @@ $(`#4`).on(`mouseup`, () => {
 
 // Closes the Modal
 $(`.closeModal`).on(`click`, () => {
-	$(`#gameOverModal`).css(`display`,`none`)
-	$(`#winModal`).css(`display`,`none`)
-})  
-
-
+    game.removeModal();
+})
