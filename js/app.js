@@ -19,36 +19,29 @@ const game = { // Start of Game Object
 
 
 
-    // this runs when the start button is clicked
+    // Plays color in sequence on cpu's turn
     playSequence: function(arr) {
 
-    	counter = 0;
+        counter = 0;
+        flash(counter);
 
-    	flash(counter);
-	    
-	    function flash(index) {
+        function flash(index) {
+            if (index === arr.length) {
 
-	       	if(index === arr.length) {
-	       		console.log("return statement is running in flash function");
-	       		return;
-	       	}
-	       	else {
+                return;
+            } else {
+                $(`#` + arr[index]).addClass('flash-button')
 
-	       		console.log("else statement is running in flash function");
+                setTimeout(() => {
 
-		        $(`#`+ arr[index]).addClass('flash-button')
-
-		        setTimeout(() => {
-		            $(`#` + arr[index]).removeClass('flash-button')
-		        	flash(index + 1);     	  
-		        }, 500)
-	       	}
-	    }
+                    $(`#` + arr[index]).removeClass('flash-button')
+                    setTimeout(() => {
+                        flash(index + 1);
+                    }, 250)
+                }, 500)
+            }
+        }
     },
-
-
-
-    
 
 
     // If player succeeds in following the sequence, this function will change the current level and if applicable the highest level on the DOM
@@ -63,16 +56,14 @@ const game = { // Start of Game Object
                 $(".highest-level").text(`${this.highestLevel}`);
             }
         }
+
         this.currentLevel++;
-        player1Sequence = [];
+        this.player1Sequence = [];
 
         // add one to sequence
         this.randomNumber = (Math.floor(Math.random() * 4) + 1);
         this.cpuSequence.push(this.randomNumber);
         this.playSequence(this.cpuSequence);
-
-        console.log("The cpuSequence is: ");
-        console.log(this.cpuSequence);
     },
 
 
@@ -80,22 +71,18 @@ const game = { // Start of Game Object
     // Checks to see if the lengths of both arrays are equal, if true run compareSequence
 
     pushButton: function(num) {
-		// Pushes number to player array
-    	this.player1Sequence.push(num);
+        // Pushes number to player array
+        this.player1Sequence.push(num);
 
-    	// Flashes Button based on color press
-		$(`#` + num).addClass('flash-button')
-			setTimeout(() => {
-				$(`#` + num).removeClass('flash-button')	
-			}, 250)    	
+        // Flashes Button based on color press
+        $(`#` + num).addClass('flash-button')
 
-		// Checks if player array length is equal to cpu array length
-    	if (this.player1Sequence.length === this.cpuSequence.length) {
-    		this.compareSequence();
-    	}
+        this.compareSequence();
     },
 
-
+    releaseButton: function(num) {
+        $(`#` + num).removeClass('flash-button')
+    },
 
 
 
@@ -107,17 +94,21 @@ const game = { // Start of Game Object
                 this.match = false;
             }
         }
+
         // If the player is successful, playSequence runs again
         if (this.match === true) {
-            this.nextLevel();
+            if (this.player1Sequence.length === this.cpuSequence.length) {
+                setTimeout(() => {
+                    this.nextLevel();
+                }, 750)
+            }
+        }
+
         // Else the game is over and the gameOver function runs.    
-        } else if (this.match === false) {
+        else {
             this.gameOver();
         }
     },
-
-
-
 
 
 
@@ -149,34 +140,44 @@ const game = { // Start of Game Object
 
 
 
-
-
-
 // Start Game button
 $(`.start-game-button`).on('click', () => {
-    console.log(`The start button is working`);
-   	game.nextLevel();
-    
+    game.nextLevel();
 })
 
 
-// Color Buttons ---- Code Is definitely not DRY, but should work.
+// Color Buttons
 
 // Yellow Button
-$(`#1`).on(`click`, () => {
+$(`#1`).on(`mousedown`, () => {
     game.pushButton(1);
+})
+$(`#1`).on(`mouseup`, () => {
+    game.releaseButton(1);
 })
 
 // Red Button
-$(`#2`).on(`click`, () => {
-    game.pushButton(2) 
+$(`#2`).on(`mousedown`, () => {
+    game.pushButton(2)
 })
+
+$(`#2`).on(`mouseup`, () => {
+    game.releaseButton(2);
+})
+
 // Blue Button
-$(`#3`).on(`click`, () => {
-    game.pushButton(3)  
+$(`#3`).on(`mousedown`, () => {
+    game.pushButton(3)
 })
+$(`#3`).on(`mouseup`, () => {
+
+    game.releaseButton(3);
+})
+
 // Green Button
-$(`#4`).on(`click`, () => {
+$(`#4`).on(`mousedown`, () => {
     game.pushButton(4)
-    
+})
+$(`#4`).on(`mouseup`, () => {
+    game.releaseButton(4);
 })
