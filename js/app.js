@@ -3,7 +3,7 @@ console.log(`Simon Says Game`);
 
 const game = { // Start of Game Object
 
-    player1Sequence: [2, 1, 3, 4, 1],
+    player1Sequence: [],
 
     cpuSequence: [],
 
@@ -79,7 +79,17 @@ const game = { // Start of Game Object
 
     // Checks to see if the lengths of both arrays are equal, if true run compareSequence
 
-    checkLength: function() {
+    pushButton: function(num) {
+		// Pushes number to player array
+    	this.player1Sequence.push(num);
+
+    	// Flashes Button based on color press
+		$(`#` + num).addClass('flash-button')
+			setTimeout(() => {
+				$(`#` + num).removeClass('flash-button')	
+			}, 250)    	
+
+		// Checks if player array length is equal to cpu array length
     	if (this.player1Sequence.length === this.cpuSequence.length) {
     		this.compareSequence();
     	}
@@ -90,15 +100,17 @@ const game = { // Start of Game Object
 
 
 
-    // Checks sequences beteween cpu Sequence and player Sequence. If the player is successful, playSequence runs again, else the gameOver function runs.
+    // Checks sequences beteween cpu Sequence and player Sequence.  
     compareSequence: function() {
         for (let i = 0; i < this.player1Sequence.length; i++) {
             if (this.player1Sequence[i] !== this.cpuSequence[i]) {
                 this.match = false;
             }
         }
+        // If the player is successful, playSequence runs again
         if (this.match === true) {
             this.nextLevel();
+        // Else the game is over and the gameOver function runs.    
         } else if (this.match === false) {
             this.gameOver();
         }
@@ -122,7 +134,7 @@ const game = { // Start of Game Object
         console.log(`Congratulations! You Win!`);
     },
 
-    // Resets The Gasme
+    // Resets The Game
     resetGame: function() {
         this.currentLevel = 0;
         $(".current-level").text(`${this.currentLevel}`);
@@ -151,54 +163,20 @@ $(`.start-game-button`).on('click', () => {
 // Color Buttons ---- Code Is definitely not DRY, but should work.
 
 // Yellow Button
-$(`.yellow`).on(`click`, () => {
-    console.log(`The yellow button is working!`);
-    game.player1Sequence.push(1);
-
-    console.log(`The player pushed 1 into the player1Sequence array`);
-    console.log(game.player1Sequence);
-
-    
-    game.checkLength();
-   
+$(`#1`).on(`click`, () => {
+    game.pushButton(1);
 })
 
 // Red Button
-$(`.red`).on(`click`, () => {
-    console.log('The red button is working!');
-    
-    game.player1Sequence.push(2);
-
-    console.log(`The player pushed 2 into the player1Sequence array`);
-    console.log(game.player1Sequence);
-
-    game.checkLength();
-    
+$(`#2`).on(`click`, () => {
+    game.pushButton(2) 
 })
-
 // Blue Button
-$(`.blue`).on(`click`, () => {
-    console.log(`The blue button is working!`);
-    game.player1Sequence.push(3);
-
-
-    console.log(`The player pushed 3 into  the player1Sequence array`);
-    console.log(game.player1Sequence);
-
- 
-    game.checkLength();
-    
+$(`#3`).on(`click`, () => {
+    game.pushButton(3)  
 })
-
 // Green Button
-$(`.green`).on(`click`, () => {
-    console.log('The green button is working!');
-    game.player1Sequence.push(4);
-
-
-    console.log(`The player pushed 4 into  the player1Sequence array`);
-    console.log(game.player1Sequence);
-
-    game.checkLength();
+$(`#4`).on(`click`, () => {
+    game.pushButton(4)
     
 })
