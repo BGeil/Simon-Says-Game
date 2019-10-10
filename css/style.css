@@ -5,12 +5,16 @@ body {
 }
 
 button {
-	
 	padding: 2rem;
 }
 
 button:focus {
 	outline: 0;
+}
+
+h1 {
+  font-size: 40px;
+  text-align:center;
 }
 
 /* Game Board and Buttons */

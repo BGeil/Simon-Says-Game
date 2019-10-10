@@ -17,19 +17,29 @@ const game = { // Start of Game Object
 
     match: true,
 
+    audioButtons: 
+    [
+     new Audio(`./Button-Sounds/yellow.mp3`),
+     new Audio(`./Button-Sounds/red.mp3`),
+     new Audio(`./Button-Sounds/blue.mp3`),
+     new Audio(`./Button-Sounds/green.mp3`),
+    ],
+
 
     // Plays color in sequence on cpu's turn
     playSequence: function(arr) {
 
         counter = 0;
-        flash(counter);
-
-        function flash(index) {
+        
+        const flash = (index) => {
             if (index === arr.length) {
 
                 return;
             } else {
+                const buttonNumber = arr[index]
                 $(`#` + arr[index]).addClass('flash-button')
+                this.audioButtons[buttonNumber].play()
+                
 
                 setTimeout(() => {
 
@@ -40,6 +50,7 @@ const game = { // Start of Game Object
                 }, 500)
             }
         }
+        flash(counter);
     },
 
 
@@ -74,7 +85,8 @@ const game = { // Start of Game Object
         this.player1Sequence.push(num);
 
         // Flashes Button based on color press
-        $(`#` + num).addClass('flash-button')
+        $(`#` + num).addClass('flash-button')  
+        this.audioButtons[num].play()
 
         this.compareSequence();
     },
