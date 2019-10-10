@@ -71,7 +71,7 @@ const game = { // Start of Game Object
         this.player1Sequence = [];
 
         // add one to sequence
-        this.randomNumber = (Math.floor(Math.random() * 4) + 1);
+        this.randomNumber = (Math.floor(Math.random() * 3) + 1);
         this.cpuSequence.push(this.randomNumber);
         this.playSequence(this.cpuSequence);
     },

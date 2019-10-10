@@ -1,7 +1,7 @@
 
 
 body {
-	background-color: #F08080;
+	background-color: #BC8F8F;
 }
 
 button {
@@ -12,6 +12,9 @@ button:focus {
 	outline: 0;
 }
 
+button:active {
+   box-shadow:20px 20px 50px inset;
+}
 h1 {
   font-size: 40px;
   text-align:center;
@@ -28,6 +31,7 @@ h1 {
   align-items:center;
   margin: 0 auto;
   position: relative;
+  box-shadow:20px 20px 50px
 }
 
 #start-button-wrapper {
@@ -47,43 +51,47 @@ h1 {
 .yellow {
 	background-color: rgb(255,255,0);
 	position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .red {
 	background-color: rgb(255,0,0);
 	position: absolute;
-    right: 10px;
+  right: 10px;
 }
 
 .green {
 	background-color: rgb(0,255,0);
 	position: absolute;
-    left: 10px;
+  left: 10px;
+
 	
 	}
 
 .blue {
 	background-color: rgb(0,0,255);
 	position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 	
 }
 
 .button {
 	width: 125px;
 	border-radius: 50%;
-	opacity: 0.3;
+  /*border-bottom: 2px solid black;
+  border: 2px solid black;
+  */
 }
 
 .flash-button {
 	opacity: 1;
+  box-shadow:20px 20px 50px inset;
 }
 
 /* Level Counters */
