@@ -159,46 +159,16 @@ $(`.start-game-button`).on('click', () => {
     game.nextLevel();
 })
 
-
 // Color Buttons
-
-// Yellow Button
-$(`#1`).on(`mousedown`, () => {
-    game.pushButton(1);
-})
-$(`#1`).on(`mouseup`, () => {
-    game.releaseButton(1);
+$(`.button`).on(`mousedown`, (e) => {
+	const numberThing = parseInt($(e.target).attr(`id`));
+	game.pushButton(numberThing);
 })
 
-
-// Red Button
-$(`#2`).on(`mousedown`, () => {
-    game.pushButton(2)
+$(`.button`).on(`mouseup`, (e) => {
+	const numberThing = parseInt($(e.target).attr(`id`));
+	game.releaseButton(numberThing);
 })
-
-$(`#2`).on(`mouseup`, () => {
-    game.releaseButton(2);
-})
-
-
-// Blue Button
-$(`#3`).on(`mousedown`, () => {
-    game.pushButton(3)
-})
-$(`#3`).on(`mouseup`, () => {
-
-    game.releaseButton(3);
-})
-
-
-// Green Button
-$(`#4`).on(`mousedown`, () => {
-    game.pushButton(4)
-})
-$(`#4`).on(`mouseup`, () => {
-    game.releaseButton(4);
-})
-
 
 // Closes the Modal
 $(`.closeModal`).on(`click`, () => {
