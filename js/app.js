@@ -18,7 +18,6 @@ const game = { // Start of Game Object
     match: true,
 
 
-
     // Plays color in sequence on cpu's turn
     playSequence: function(arr) {
 

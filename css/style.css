@@ -1,8 +1,7 @@
+
+
 body {
 	background-color: #F08080;
-	height: 100vh;
-    display: flex;
-    align-items: center;
 }
 
 button {
@@ -11,7 +10,7 @@ button {
 }
 
 button:focus {
-	outline:0;
+	outline: 0;
 }
 
 /* Game Board and Buttons */
@@ -85,10 +84,12 @@ button:focus {
 
 /* Level Counters */
 
-.level-wrapper {
-	display: flex;
-	align-self: flex-end;
-	align-content: center;
+#level-wrapper {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+
 }
 
 
