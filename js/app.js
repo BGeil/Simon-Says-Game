@@ -111,6 +111,7 @@ const game = { // Start of Game Object
     gameOver: function() {
         this.showModal(`gameOverModal`);
         this.resetGame();
+        $(`.start-game-button`).text(`Try Again`);
     },
 
     // This functions when the player beats level 20
