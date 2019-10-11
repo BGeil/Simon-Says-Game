@@ -1,6 +1,3 @@
-console.log(`Simon Says Game`);
-
-
 const game = { // Start of Game Object
 
     player1Sequence: [],
@@ -17,12 +14,11 @@ const game = { // Start of Game Object
 
     match: true,
 
-    audioButtons: 
-    [
-     new Audio(`./Button-Sounds/yellow.mp3`),
-     new Audio(`./Button-Sounds/red.mp3`),
-     new Audio(`./Button-Sounds/blue.mp3`),
-     new Audio(`./Button-Sounds/green.mp3`),
+    audioButtons: [
+        new Audio(`./Button-Sounds/yellow.mp3`),
+        new Audio(`./Button-Sounds/red.mp3`),
+        new Audio(`./Button-Sounds/blue.mp3`),
+        new Audio(`./Button-Sounds/green.mp3`),
     ],
 
 
@@ -30,7 +26,7 @@ const game = { // Start of Game Object
     playSequence: function(arr) {
 
         counter = 0;
-        
+
         const flash = (index) => {
             if (index === arr.length) {
 
@@ -39,7 +35,7 @@ const game = { // Start of Game Object
                 const buttonNumber = arr[index]
                 $(`#` + arr[index]).addClass('flash-button')
                 this.audioButtons[buttonNumber].play()
-                
+
 
                 setTimeout(() => {
 
@@ -71,7 +67,7 @@ const game = { // Start of Game Object
         this.player1Sequence = [];
 
         // add one to sequence
-        this.randomNumber = (Math.floor(Math.random() * 3) + 1);
+        this.randomNumber = (Math.floor(Math.random() * 4));
         this.cpuSequence.push(this.randomNumber);
         this.playSequence(this.cpuSequence);
     },
@@ -85,7 +81,7 @@ const game = { // Start of Game Object
         this.player1Sequence.push(num);
 
         // Flashes Button based on color press
-        $(`#` + num).addClass('flash-button')  
+        $(`#` + num).addClass('flash-button')
         this.audioButtons[num].play()
 
         this.compareSequence();
@@ -137,11 +133,11 @@ const game = { // Start of Game Object
 
         // Clears all colors on buttons on reset
         setTimeout(() => {
-	        for (let i = 0; i < $(`.flash-button`).length; i++) {
-	            $(`.flash-button`).removeClass(`flash-button`);
-	        }
+            for (let i = 0; i < $(`.flash-button`).length; i++) {
+                $(`.flash-button`).removeClass(`flash-button`);
+            }
         }, 250)
-        
+
 
         // The Following Resets All Game Variables and Arrays
         this.currentLevel = 0;
@@ -173,13 +169,13 @@ $(`.start-game-button`).on('click', () => {
 
 // Color Buttons
 $(`.button`).on(`mousedown`, (e) => {
-	const numberThing = parseInt($(e.target).attr(`id`));
-	game.pushButton(numberThing);
+    const numberThing = parseInt($(e.target).attr(`id`));
+    game.pushButton(numberThing);
 })
 
 $(`.button`).on(`mouseup`, (e) => {
-	const numberThing = parseInt($(e.target).attr(`id`));
-	game.releaseButton(numberThing);
+    const numberThing = parseInt($(e.target).attr(`id`));
+    game.releaseButton(numberThing);
 })
 
 // Closes the Modal

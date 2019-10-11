@@ -1,37 +1,36 @@
-
-
 body {
-	background-color: #BC8F8F;
+    background-color: #BC8F8F;
 }
 
 button {
-	padding: 2rem;
+    padding: 2rem;
 }
 
 button:focus {
-	outline: 0;
+    outline: 0;
 }
 
 button:active {
-   box-shadow:20px 20px 50px inset;
+    box-shadow: 20px 20px 50px inset;
 }
+
 h1 {
-  font-size: 40px;
-  text-align:center;
+    font-size: 40px;
+    text-align: center;
 }
 
 /* Game Board and Buttons */
 
 .circle-board {
-  height: 500px;
-  width: 500px;
-  background-color: #595959;
-  border-radius: 50%;
-  display: flex;
-  align-items:center;
-  margin: 0 auto;
-  position: relative;
-  box-shadow:20px 20px 50px
+    height: 500px;
+    width: 500px;
+    background-color: #595959;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 20px 20px 50px
 }
 
 #start-button-wrapper {
@@ -39,7 +38,7 @@ h1 {
 }
 
 .start-game-button {
-	border-radius: 25%;
+    border-radius: 25%;
     border-bottom: 2px solid black;
     border-right: 2px solid black;
     width: 120px;
@@ -49,49 +48,49 @@ h1 {
 }
 
 .yellow {
-	background-color: rgb(255,255,0);
-	position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+    background-color: rgb(255, 255, 0);
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 
 .red {
-	background-color: rgb(255,0,0);
-	position: absolute;
-  right: 10px;
+    background-color: rgb(255, 0, 0);
+    position: absolute;
+    right: 10px;
 }
 
 .green {
-	background-color: rgb(0,255,0);
-	position: absolute;
-  left: 10px;
+    background-color: rgb(0, 255, 0);
+    position: absolute;
+    left: 10px;
 
-	
-	}
+
+}
 
 .blue {
-	background-color: rgb(0,0,255);
-	position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-	
+    background-color: rgb(0, 0, 255);
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
 }
 
 .button {
-	width: 125px;
-	border-radius: 50%;
-  /*border-bottom: 2px solid black;
+    width: 125px;
+    border-radius: 50%;
+    /*border-bottom: 2px solid black;
   border: 2px solid black;
   */
 }
 
 .flash-button {
-	opacity: 1;
-  box-shadow:20px 20px 50px inset;
+    opacity: 1;
+    box-shadow: 20px 20px 50px inset;
 }
 
 /* Level Counters */
@@ -109,49 +108,46 @@ h1 {
 /* Modal Button */
 
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content-win {
-  background-color: rgb(0,255,0);
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  text-align: center;
+    background-color: rgb(0, 255, 0);
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
 }
 
 .modal-content-lose {
-  background-color: rgb(255,0,0);
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  text-align: center;
+    background-color: rgb(255, 0, 0);
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
 }
 
 .closeModal {
-  color: black;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .closeModal:hover,
 .closeModal:focus {
-  text-decoration: none;
-  cursor: pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
-
-
-
